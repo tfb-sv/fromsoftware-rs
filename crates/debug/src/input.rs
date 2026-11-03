@@ -4,6 +4,8 @@ use std::sync::atomic::{AtomicBool, AtomicU8, Ordering};
 use bitflags::bitflags;
 
 mod dinput;
+// ER-Lab 2026-10-08: paylasimli MinHook (mods\bin\MinHook.x64.dll) dinamik yukleyici
+mod mh;
 pub mod hooks;
 
 pub use hooks::HookError;

@@ -6,6 +6,9 @@ use windows::core::PCSTR;
 mod bundle;
 mod rva_jp;
 mod rva_ww;
+mod rva_ww270;
+mod rva_ww271;
+mod rva_ww272;
 
 pub use bundle::RvaBundle;
 
@@ -14,6 +17,10 @@ use fromsoftware_shared::game_version::{GameVersion, LANG_ID_EN, LANG_ID_JP};
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 enum ERGameVersion {
     Ww262,
+    Ww270,
+    Ww271,
+    /// 2026-10-21 (ER-Lab): binary-mapper ile eslenen 2.7.2.0
+    Ww272,
     Jp2621,
 }
 
@@ -23,6 +30,9 @@ impl GameVersion for ERGameVersion {
     fn from_lang_version(lang_id: u16, version: &str) -> Option<Self> {
         match (lang_id, version) {
             (LANG_ID_EN, "2.6.2.0") => Some(Self::Ww262),
+            (LANG_ID_EN, "2.7.0.0") => Some(Self::Ww270),
+            (LANG_ID_EN, "2.7.1.0") => Some(Self::Ww271),
+            (LANG_ID_EN, "2.7.2.0") => Some(Self::Ww272),
             (LANG_ID_JP, "2.6.2.1") => Some(Self::Jp2621),
             _ => None,
         }
@@ -33,6 +43,9 @@ impl ERGameVersion {
     const fn rvas(self) -> RvaBundle {
         match self {
             Self::Ww262 => rva_ww::RVAS,
+            Self::Ww270 => rva_ww270::RVAS,
+            Self::Ww271 => rva_ww271::RVAS,
+            Self::Ww272 => rva_ww272::RVAS,
             Self::Jp2621 => rva_jp::RVAS,
         }
     }

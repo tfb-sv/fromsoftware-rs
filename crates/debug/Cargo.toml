@@ -19,4 +19,4 @@ tracing-subscriber.workspace = true
 tracing.workspace = true
 windows.workspace = true
 clipboard-win = "5.4.1"
-ilhook = { version = "2.2.0", features = ["x64"] }
+# ER-Lab 2026-10-08: ilhook kaldirildi -> girdi hook'lari paylasimli MinHook (src/input/mh.rs)
